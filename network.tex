@@ -1,0 +1,815 @@
+
+%% bare_jrnl.tex
+%% V1.4
+%% 2012/12/27
+%% by Michael Shell
+%% see http://www.michaelshell.org/
+%% for current contact information.
+%%
+%% This is a skeleton file demonstrating the use of IEEEtran.cls
+%% (requires IEEEtran.cls version 1.8 or later) with an IEEE journal paper.
+%%
+%% Support sites:
+%% http://www.michaelshell.org/tex/ieeetran/
+%% http://www.ctan.org/tex-archive/macros/latex/contrib/IEEEtran/
+%% and
+%% http://www.ieee.org/
+
+
+
+% *** Authors should verify (and, if needed, correct) their LaTeX system  ***
+% *** with the testflow diagnostic prior to trusting their LaTeX platform ***
+% *** with production work. IEEE's font choices can trigger bugs that do  ***
+% *** not appear when using other class files.                            ***
+% The testflow support page is at:
+% http://www.michaelshell.org/tex/testflow/
+
+
+%%*************************************************************************
+%% Legal Notice:
+%% This code is offered as-is without any warranty either expressed or
+%% implied; without even the implied warranty of MERCHANTABILITY or
+%% FITNESS FOR A PARTICULAR PURPOSE!
+%% User assumes all risk.
+%% In no event shall IEEE or any contributor to this code be liable for
+%% any damages or losses, including, but not limited to, incidental,
+%% consequential, or any other damages, resulting from the use or misuse
+%% of any information contained here.
+%%
+%% All comments are the opinions of their respective authors and are not
+%% necessarily endorsed by the IEEE.
+%%
+%% This work is distributed under the LaTeX Project Public License (LPPL)
+%% ( http://www.latex-project.org/ ) version 1.3, and may be freely used,
+%% distributed and modified. A copy of the LPPL, version 1.3, is included
+%% in the base LaTeX documentation of all distributions of LaTeX released
+%% 2003/12/01 or later.
+%% Retain all contribution notices and credits.
+%% ** Modified files should be clearly indicated as such, including  **
+%% ** renaming them and changing author support contact information. **
+%%
+%% File list of work: IEEEtran.cls, IEEEtran_HOWTO.pdf, bare_adv.tex,
+%%                    bare_conf.tex, bare_jrnl.tex, bare_jrnl_compsoc.tex,
+%%                    bare_jrnl_transmag.tex
+%%*************************************************************************
+
+% Note that the a4paper option is mainly intended so that authors in
+% countries using A4 can easily print to A4 and see how their papers will
+% look in print - the typesetting of the document will not typically be
+% affected with changes in paper size (but the bottom and side margins will).
+% Use the testflow package mentioned above to verify correct handling of
+% both paper sizes by the user's LaTeX system.
+%
+% Also note that the "draftcls" or "draftclsnofoot", not "draft", option
+% should be used if it is desired that the figures are to be displayed in
+% draft mode.
+%
+\documentclass[journal]{IEEEtran}
+%
+% If IEEEtran.cls has not been installed into the LaTeX system files,
+% manually specify the path to it like:
+% \documentclass[journal]{../sty/IEEEtran}
+
+
+
+
+
+% Some very useful LaTeX packages include:
+% (uncomment the ones you want to load)
+
+
+% *** MISC UTILITY PACKAGES ***
+%
+%\usepackage{ifpdf}
+% Heiko Oberdiek's ifpdf.sty is very useful if you need conditional
+% compilation based on whether the output is pdf or dvi.
+% usage:
+% \ifpdf
+%   % pdf code
+% \else
+%   % dvi code
+% \fi
+% The latest version of ifpdf.sty can be obtained from:
+% http://www.ctan.org/tex-archive/macros/latex/contrib/oberdiek/
+% Also, note that IEEEtran.cls V1.7 and later provides a builtin
+% \ifCLASSINFOpdf conditional that works the same way.
+% When switching from latex to pdflatex and vice-versa, the compiler may
+% have to be run twice to clear warning/error messages.
+
+
+% *** CITATION PACKAGES ***
+%
+\usepackage{cite}
+
+% *** GRAPHICS RELATED PACKAGES ***
+%
+\ifCLASSINFOpdf
+  \usepackage[pdftex]{graphicx}
+  % declare the path(s) where your graphic files are
+  % \graphicspath{{../pdf/}{../jpeg/}}
+  % and their extensions so you won't have to specify these with
+  % every instance of \includegraphics
+  \DeclareGraphicsExtensions{.pdf,.jpeg,.png}
+\else
+  % or other class option (dvipsone, dvipdf, if not using dvips). graphicx
+  % will default to the driver specified in the system graphics.cfg if no
+  % driver is specified.
+  \usepackage[dvips]{graphicx}
+  % declare the path(s) where your graphic files are
+  % \graphicspath{{../eps/}}
+  % and their extensions so you won't have to specify these with
+  % every instance of \includegraphics
+  \DeclareGraphicsExtensions{.eps}
+\fi
+
+% *** MATH PACKAGES ***
+\usepackage[cmex10]{amsmath}
+
+
+% *** SPECIALIZED LIST PACKAGES ***
+\usepackage{algorithmic}
+
+% *** ALIGNMENT PACKAGES ***
+\usepackage{array}
+
+% *** SUBFIGURE PACKAGES ***
+%\ifCLASSOPTIONcompsoc
+%  \usepackage[caption=false,font=normalsize,labelfont=sf,textfont=sf]{subfig}
+%\else
+%  \usepackage[caption=false,font=footnotesize]{subfig}
+%\fi
+% subfig.sty, written by Steven Douglas Cochran, is the modern replacement
+% for subfigure.sty, the latter of which is no longer maintained and is
+% incompatible with some LaTeX packages including fixltx2e. However,
+% subfig.sty requires and automatically loads Axel Sommerfeldt's caption.sty
+% which will override IEEEtran.cls' handling of captions and this will result
+% in non-IEEE style figure/table captions. To prevent this problem, be sure
+% and invoke subfig.sty's "caption=false" package option (available since
+% subfig.sty version 1.3, 2005/06/28) as this is will preserve IEEEtran.cls
+% handling of captions.
+% Note that the Computer Society format requires a larger sans serif font
+% than the serif footnote size font used in traditional IEEE formatting
+% and thus the need to invoke different subfig.sty package options depending
+% on whether compsoc mode has been enabled.
+%
+% The latest version and documentation of subfig.sty can be obtained at:
+% http://www.ctan.org/tex-archive/macros/latex/contrib/subfig/
+
+
+% *** FLOAT PACKAGES ***
+%
+%\usepackage{fixltx2e}
+% fixltx2e, the successor to the earlier fix2col.sty, was written by
+% Frank Mittelbach and David Carlisle. This package corrects a few problems
+% in the LaTeX2e kernel, the most notable of which is that in current
+% LaTeX2e releases, the ordering of single and double column floats is not
+% guaranteed to be preserved. Thus, an unpatched LaTeX2e can allow a
+% single column figure to be placed prior to an earlier double column
+% figure. The latest version and documentation can be found at:
+% http://www.ctan.org/tex-archive/macros/latex/base/
+
+
+%\usepackage{stfloats}
+% stfloats.sty was written by Sigitas Tolusis. This package gives LaTeX2e
+% the ability to do double column floats at the bottom of the page as well
+% as the top. (e.g., "\begin{figure*}[!b]" is not normally possible in
+% LaTeX2e). It also provides a command:
+%\fnbelowfloat
+% to enable the placement of footnotes below bottom floats (the standard
+% LaTeX2e kernel puts them above bottom floats). This is an invasive package
+% which rewrites many portions of the LaTeX2e float routines. It may not work
+% with other packages that modify the LaTeX2e float routines. The latest
+% version and documentation can be obtained at:
+% http://www.ctan.org/tex-archive/macros/latex/contrib/sttools/
+% Do not use the stfloats baselinefloat ability as IEEE does not allow
+% \baselineskip to stretch. Authors submitting work to the IEEE should note
+% that IEEE rarely uses double column equations and that authors should try
+% to avoid such use. Do not be tempted to use the cuted.sty or midfloat.sty
+% packages (also by Sigitas Tolusis) as IEEE does not format its papers in
+% such ways.
+% Do not attempt to use stfloats with fixltx2e as they are incompatible.
+% Instead, use Morten Hogholm'a dblfloatfix which combines the features
+% of both fixltx2e and stfloats:
+%
+% \usepackage{dblfloatfix}
+% The latest version can be found at:
+% http://www.ctan.org/tex-archive/macros/latex/contrib/dblfloatfix/
+
+
+
+
+%\ifCLASSOPTIONcaptionsoff
+%  \usepackage[nomarkers]{endfloat}
+% \let\MYoriglatexcaption\caption
+% \renewcommand{\caption}[2][\relax]{\MYoriglatexcaption[#2]{#2}}
+%\fi
+% endfloat.sty was written by James Darrell McCauley, Jeff Goldberg and
+% Axel Sommerfeldt. This package may be useful when used in conjunction with
+% IEEEtran.cls'  captionsoff option. Some IEEE journals/societies require that
+% submissions have lists of figures/tables at the end of the paper and that
+% figures/tables without any captions are placed on a page by themselves at
+% the end of the document. If needed, the draftcls IEEEtran class option or
+% \CLASSINPUTbaselinestretch interface can be used to increase the line
+% spacing as well. Be sure and use the nomarkers option of endfloat to
+% prevent endfloat from "marking" where the figures would have been placed
+% in the text. The two hack lines of code above are a slight modification of
+% that suggested by in the endfloat docs (section 8.4.1) to ensure that
+% the full captions always appear in the list of figures/tables - even if
+% the user used the short optional argument of \caption[]{}.
+% IEEE papers do not typically make use of \caption[]'s optional argument,
+% so this should not be an issue. A similar trick can be used to disable
+% captions of packages such as subfig.sty that lack options to turn off
+% the subcaptions:
+% For subfig.sty:
+% \let\MYorigsubfloat\subfloat
+% \renewcommand{\subfloat}[2][\relax]{\MYorigsubfloat[]{#2}}
+% However, the above trick will not work if both optional arguments of
+% the \subfloat command are used. Furthermore, there needs to be a
+% description of each subfigure *somewhere* and endfloat does not add
+% subfigure captions to its list of figures. Thus, the best approach is to
+% avoid the use of subfigure captions (many IEEE journals avoid them anyway)
+% and instead reference/explain all the subfigures within the main caption.
+% The latest version of endfloat.sty and its documentation can obtained at:
+% http://www.ctan.org/tex-archive/macros/latex/contrib/endfloat/
+%
+% The IEEEtran \ifCLASSOPTIONcaptionsoff conditional can also be used
+% later in the document, say, to conditionally put the References on a
+% page by themselves.
+
+
+
+
+% *** PDF, URL AND HYPERLINK PACKAGES ***
+%
+\usepackage{url}
+% url.sty was written by Donald Arseneau. It provides better support for
+% handling and breaking URLs. url.sty is already installed on most LaTeX
+% systems. The latest version and documentation can be obtained at:
+% http://www.ctan.org/tex-archive/macros/latex/contrib/url/
+% Basically, \url{my_url_here}.
+
+\usepackage{amssymb} %for \mathbb
+
+% for marking
+\usepackage[normalem]{ulem}
+%\newcommand{\revn}[1]{#1}
+\newcommand{\revn}[1]{\uline{#1}}  %revise the text during this revision
+\newcommand{\revi}[1]{\uwave{#1}}  %revisions compared to last version
+%\newcommand{\revi}[1]{#1}
+
+%\newcommand{\del}[1]{\sout{#1}}  %revise the text
+\newcommand{\del}[1]{{}}
+
+\newcommand{\note}[1]{{\sffamily\itshape\bfseries\uline{#1}}}
+\newcommand{\notei}[1]{{}}
+\newcommand{\noten}[1]{{}}
+
+
+% *** Do not adjust lengths that control margins, column widths, etc. ***
+% *** Do not use packages that alter fonts (such as pslatex).         ***
+% There should be no need to do such things with IEEEtran.cls V1.6 and later.
+% (Unless specifically asked to do so by the journal or conference you plan
+% to submit to, of course. )
+
+
+% correct bad hyphenation here
+\hyphenation{op-tical net-works semi-conduc-tor}
+
+
+\begin{document}
+%
+% paper title
+% can use linebreaks \\ within to get better formatting as desired
+% Do not put math or special symbols in the title.
+\title{End-to-end FEC for TCP}
+%
+%
+% author names and IEEE memberships
+% note positions of commas and nonbreaking spaces ( ~ ) LaTeX will not break
+% a structure at a ~ so this keeps an author's name from being broken across
+% two lines.
+% use \thanks{} to gain access to the first footnote area
+% a separate \thanks must be used for each paragraph as LaTeX2e's \thanks
+% was not built to handle multiple paragraphs
+%
+
+\author{Yong~Cui,~\IEEEmembership{Member,~IEEE,}
+        Lian~Wang,
+		Xin~Wang,~\IEEEmembership{Member,~IEEE,}
+		% <-this % stops a space
+\thanks{Yong Cui, Lian Wang are with the Department of Computer Science and Technology, Tsinghua University, Beijing, P.R.China (Email: cuiyong@tsinghua.edu.cn, wanglian12@mails.tsinghua.edu.cn)}% <-this % stops a space
+\thanks{Xin Wang is with the Department of Electrical and Computer Engineer Stony Brook University, Stony Brook, New York, USA (Email: xwang@ece.sunysb.edu).}}
+% note the % following the last \IEEEmembership and also \thanks -
+% these prevent an unwanted space from occurring between the last author name
+% and the end of the author line. i.e., if you had this:
+%
+% \author{....lastname \thanks{...} \thanks{...} }
+%                     ^------------^------------^----Do not want these spaces!
+%
+% a space would be appended to the last name and could cause every name on that
+% line to be shifted left slightly. This is one of those "LaTeX things". For
+% instance, "\textbf{A} \textbf{B}" will typeset as "A B" not "AB". To get
+% "AB" then you have to do: "\textbf{A}\textbf{B}"
+% \thanks is no different in this regard, so shield the last } of each \thanks
+% that ends a line with a % and do not let a space in before the next \thanks.
+% Spaces after \IEEEmembership other than the last one are OK (and needed) as
+% you are supposed to have spaces between the names. For what it is worth,
+% this is a minor point as most people would not even notice if the said evil
+% space somehow managed to creep in.
+
+
+
+% The paper headers
+\markboth{IEEE Network,~Vol.~X, No.~X, June~2014}%
+{Shell \MakeLowercase{\textit{et al.}}: End-to-end FEC for TCP}
+% The only time the second header will appear is for the odd numbered pages
+% after the title page when using the twoside option.
+%
+% *** Note that you probably will NOT want to include the author's ***
+% *** name in the headers of peer review papers.                   ***
+% You can use \ifCLASSOPTIONpeerreview for conditional compilation here if
+% you desire.
+
+
+% If you want to put a publisher's ID mark on the page you can do it like
+% this:
+%\IEEEpubid{0000--0000/00\$00.00~\copyright~2012 IEEE}
+% Remember, if you use this you must call \IEEEpubidadjcol in the second
+% column for its text to clear the IEEEpubid mark.
+
+% use for special paper notices
+%\IEEEspecialpapernotice{(Invited Paper)}
+
+
+% make the title area
+\maketitle
+
+% As a general rule, do not put math, special symbols or citations
+% in the abstract or keywords.
+\begin{abstract}
+
+
+The widespread used TCP has many limitations now in meeting the bandwidth and latency requirements of applications in mobile networks, high-speed data center networks and heterogeneous multi-path networks.
+In addition to those efforts on structural re-engineering, new congestion control mechanisms, transmission scheduling and so on, coding is potential to improve the performance of TCP as a new technology to maintain reliability instead of retransmission.
+In this article, we provide a tutorial on how to leverage end-to-end FEC in transport protocols. We mainly analyze and survey the problems TCP meets, what benefits coding may bring and how they can be achieved, what challenges there are in cooperating coding into TCP and the current solutions.
+We hope that this article can help readers quickly understand how coding can complement TCP, so as to help them make new contributions in this field.
+
+
+\end{abstract}
+
+% Note that keywords are not normally used for peerreview papers.
+\begin{IEEEkeywords}
+end-to-end, FEC, TCP, Multi-path TCP.
+\end{IEEEkeywords}
+
+
+% For peer review papers, you can put extra information on the cover
+% page as needed:
+% \ifCLASSOPTIONpeerreview
+% \begin{center} \bfseries EDICS Category: 3-BBND \end{center}
+% \fi
+%
+% For peerreview papers, this IEEEtran command inserts a page break and
+% creates the second title. It will be ignored for other modes.
+\IEEEpeerreviewmaketitle
+
+
+\section{Introduction}
+\label{sec:intro}
+% The very first letter is a 2 line initial drop letter followed
+% by the rest of the first word in caps.
+%
+% form to use if the first word consists of a single letter:
+% \IEEEPARstart{A}{demo} file is ....
+%
+% form to use if you need the single drop letter followed by
+% normal text (unknown if ever used by IEEE):
+% \IEEEPARstart{A}{}demo file is ....
+%
+% Some journals put the first two words in caps:
+% \IEEEPARstart{T}{his demo} file is ....
+%
+% Here we have the typical use of a "T" for an initial drop letter
+% and "HIS" in caps to complete the first word.
+%\IEEEPARstart{F}{irst} part:
+% You must have at least 2 lines in the paragraph with the drop letter
+% (should never be an issue)
+\IEEEPARstart{T}{CP} is the most important transport protocol today which provide in-order reliable transmission of byte-stream. The majority of data transmissions go through TCP.
+With the rapid development of computer and electronic technologies, the network characteristics and application requirements are far different now from those when TCP is designed.
+TCP has limitations in many popular networks such as wireless networks, high speed networks, heterogeneous multi-path networks and so on.
+% due to its loss-based congestion control and retransmission-based lose recovery schemes.
+
+Coding is promising to improve the performance of TCP but hasn't been well explored yet. Coding in TCP mainly serves as the error control scheme of Forward Error Correction (FEC). FEC has been widely studied in link layer as a complement of Automatic Repeat reQuest (ARQ).
+%FEC is beneficial to TCP, too.
+ARQ limits the improvement of TCP to some extent.
+FEC can help recover lost packets by decoding with redundant packets and provide faster loss recovery for TCP, thus ease the bandwidth, latency and out-of-order issues.
+%Advantages of network coding: provide redundancy to mask loss, faster recovery, randomization.
+%The power of redundancy is to reduce uncertainty without having to anticipate the cause of that uncertainty. The randomization introduced by the coding process eases the scheduling of packet distribution, and, thus, makes the multipath transmission more efficient.
+
+It's not easy to assist or replace ARQ with FEC in TCP. TCP is not designed for coding. The data control and reliability of TCP is greatly coupled with congestion control in byte-oriented sequence number management. TCP is widely deployed. For new protocols supporting FEC, good compatibility is essential for incremental deployment which is the precondition of practical usage. FEC works via providing redundancy, the amount of which needs careful tuning. Moreover coding is not free; on the contrary it requires more overhead.
+
+We mainly explored how to design a practical transport protocol with better performance using FEC in this paper. The rest of the article is organized as follows. We first present the motivation in Section \ref{sec:motivation}. The opportunities and challenges of incorporating FEC in TCP are analyzed in Section \ref{sec:e2e}. We then introduce the current solutions in Section \ref{sec:state} and conclude the paper in Section \ref{sec:conclusion}.
+
+%\hfill mds
+
+%\hfill December 27, 2012
+
+\section{Background and Motivation}
+\label{sec:motivation}
+
+% needed in second column of first page if using \IEEEpubid
+%\IEEEpubidadjcol
+
+\subsection{Preliminaries}%{Introduction of Network Coding}
+\label{sec:motiIntro}
+
+%PRELIMINARIES preliminaries
+
+We introduce some notions about coding here, which will be useful throughout the paper to help better understand what codes and how they can be used.
+
+\textbf{Forward Error Correction (FEC):} Forward Error Correction (FEC) is a kind of error correction technology corresponding to Automatic Repeat-reQuest (ARQ). ARQ is the currently  used technology in TCP, which recovers packet losses based on acknowledgements and retransmissions. Unlike ARQ, the central idea of FEC is that the sender encodes their message in a redundant way by using an error-correcting code (ECC). Note that in TCP, FEC is not used to correct bit errors, but to recover data in lost packets.
+
+\textbf{Network Coding:} Network coding commonly refers to coding at the packet (or segment, frame) level.
+The packets  can be at application layer, transport layer, network layer and even link layer. The main idea of network coding is to mix data from different packets across time and across flows into one packet with the same length.
+
+Network coding can be classified into intermediate coding and end-to-end coding. In the former, intermediate nodes such as routers and relay nodes also perform coding in addition to storing and forwarding. In the latter, only end hosts perform coding. In this paper we mainly focus on end-to-end coding.
+
+\textbf{Symbols:} Symbols refer to the basic element of coding, whose length can range from one byte to the maximum payload length of one packet.
+
+\textbf{Blocks/generations:} Practical network codes are usually block codes in which a whole file is partitioned into separate blocks. A block is a complete unit in which encoding and recoding are done. The block size is predetermined for one block. Practical block codes can generally be decoded in polynomial time to their block length. Different blocks are coded separately and symbols from different blocks have no relation with each other. Blocks are also called generations in network coding.
+%Block codes work on fixed-size blocks (packets) of bits or symbols of predetermined size. Practical block codes can generally be decoded in polynomial time to their block length.
+%corresponds to convolutional codes which work on bit or symbol streams of arbitrary length.
+
+\textbf{Systematic codes:} Systematic codes are a kind of codes in which all source data are included as part of the encoded data. With systematic codes, the original data are sent without change and some amount of coded data are sent as a supplement to help recover the lost data. The main advantage over nonsystematic codes is that most data can be received without coding, which can reduce computation overhead. But if some source data and coded data are lost at the same time, systematic coded may encounter difficulty of decoding the lost data.
+
+\textbf{Rateless codes:} The terminology \emph{Rateless} corresponds to \emph{fixed-rate}, in which 'rate' refers to code rate, or equivalently, the amount of redundancy.
+For a certain amount of source data, the amount of the redundant data that \emph{fixed-rate codes} incorporate is fixed or can be adjusted among a small number of discrete values. Correspondingly, \emph{rateless codes} do not fix their code-rate before transmission and can progressively increase the redundancy, i.e. their code rates can vary continuously from $1$ to nearly $0$.
+\emph{Rateless codes} have advantage over \emph{fixed-rate codes} in situations, where channel state information is unavailable at the transmitter or the channel condition is time-varying, as \emph{rateless codes} are more convenient to achieve near-capacity performance in these conditions \cite{bonello2011low}.
+
+\textbf{Galois field (GF)/finite field:} A Galois field (GF) or finite field is a field that contains a finite number of elements. Network coding is commonly done over a Galois field. The notation of a Galois field can be $\mathbb{F}_{p^n}$ or $F_{p^n}$ $GF(p^n)$ where $p$ is a prime number called the characteristic of the field, $n$ is a positive integer, and $p^n$ is the number of elements (also its order) in the field.
+
+\textbf{Random linear codes:} A random linear code is a code where coded packets are a linear combination of random selected source packets.
+	
+
+
+\subsection{The limitation of TCP}
+\label{sec:motiLimit}
+
+%\subsubsection{Introduction of traffic characteristics Measurements}
+%\label{sec:motiLimitTraffic}
+
+%Mobile, DCN, etc. measurement data
+
+%\subsubsection{Limitation of TCP}
+\label{sec:motiLimitTCP}
+
+%Nowadays, the network characteristics and application requirements are rather different from those when TCP is designed. TCP now has many limitations in mobile networks, heterogeneous multi-path networks, high bandwidth-delay product networks and so on.
+The inadequacy of commodity TCP in wireless networks, high bandwidth-delay product networks and heterogeneous multi-path networks has been extensively documented. Here we list the three major limitations of TCP in these networks, where coding may help.
+
+\textbf{First, TCP suffers throughput collapse in face of losses due to the current loss-based congestion control algorithm.} TCP takes loss as congestion signals and halves the congestion window or resets it to one in fast retransmission and timeout respectively. This makes TCP behaves poorly on lossy links such as wireless networks where frequent wireless losses are taken as congestion.
+On the other hand, for high speed networks such as Data Center Networks (DCN), even ephemeral loss will be a serve problem as TCP reacts sharply to loss and will spend a long time to reach the available bandwidth after loss. It's reported that a single packet in 10,000 is enough to reduce TCP/IP throughput to a third over a 50-ms gigabit link, and one in a thousand drops it by an order of magnitude \cite{balakrishnan2011maelstrom}.
+
+\textbf{Second, latency-sensitive applications (i.e. real-time or interactive applications) suffer from the slow loss recovery of TCP} due to its reliability mechanisms of acknowledgments and retransmissions. The power of redundancy is that it reduces latency precisely under the most challenging conditions: when delays or failures are unpredictable.
+
+\textbf{Third, TCP requires massive buffers at the communicating end-hosts to fully exploit the bandwidth of high bandwidth-delay product networks.} A new case is its extension MPTCP in heterogeneous multipath networks. MPTCP is promising to make full use of the capacity of heterogeneous networks concurrently. But for heterogeneous wireless networks such as 3G and Wifi, we need to handle the cooperation of fast and slow links to meet its promised potential.
+
+\subsection{Advantages over other layers}%Why in TCP: Advantages of applying FEC in TCP over other layers
+\label{sec:motiTrans}
+
+Adapting TCP for wireless scenarios is a very well-studied problem. The general approach has been to mask losses from TCP using link layer retransmission. However, it has been noted in the literature that \textbf{the interaction between link layer retransmission and TCP's retransmission can be complicated} and that performance may suffer due to independent retransmission protocols at different layers. More importantly, if we want the benefits of approaches such as multipath opportunistic routing which exploit the broadcast nature of the wireless medium, link layer retransmission is not the best approach.
+
+\textbf{End-to-end} is promising since significant gains can be achieved without extensive support at the network and link layers in routers and base stations. A key advantage of adopting transport layer over a link layer approach is that it \textbf{provides backward compatibility with wireless equipment installed throughout existing networks}.
+
+\textbf{TCP has knowledge of both networks and end-hosts to a large extent.} Integrating coding into TCP made it easier to leverage TCP's option \textbf{negotiation} (so connections can selectively use coding) and its \textbf{RTT estimation} (so that the coded packet transmission can be timed correctly). \textbf{Congestion, loss rate and bandwidth estimation} are also possible in TCP. It also eased buffer management, since coding can leverage TCP's \textbf{socket buffers}, which is especially important since buffer space is at a premium in production Web servers.
+
+\section{End-to-end FEC in TCP: opportunities and challenges}
+\label{sec:e2e}
+
+% needed in second column of first page if using \IEEEpubid
+%\IEEEpubidadjcol
+
+\subsection{Opportunities}
+\label{sec:e2eOpp}
+End-to-end FEC can provide better reliability, loss-tolerance and faster loss recovery though introducing redundancy. With coding, a block of data is transmitted along with corrective packets. Within the supposed maximum loss ratio, the whole block can be recovered immediately without retransmission after efficacious feedback or even timeout. In case that lost packet number exceeds the threshold, part of the lost ones can be recovered and the remaining loss can be detected earlier and be recovered faster with the aid of coding. These characteristics of coding can provide several potential benefits for transport and control protocols.
+
+\textbf{Firstly, TCP with coding may provide higher throughput in lossy networks by masking loss and avoiding retransmission.} If the buffer size is limited, packet loss may cause \textbf{head-of-line blocking} problem in the receiver buffer especially for high bandwidth-delay product networks. If coding can recover loss before blocking or just relieves blocking faster than retransmission, the throughput can be improved. When the buffer size is large enough, with the same congestion and rate control algorithm, TCP without coding can send the same amount of packets as the coded TCP, thus retransmission may introduce less redundancy than coding. \textbf{That is to say, the throughput cannot be improved without hurt of fairness to ordinary TCP if the buffer size is large enough.} Under this condition, loss can be recovered via retransmission, but would still induce larger delay, jitter and degrades the user experience of delay-sensitive and interactive applications, where coding with careful design works.
+
+\textbf{Even if end-to-end coding cannot improve the throughput of TCP due to fairness, reducing latency is promising.} Nowadays numerous latency-sensitive or interactive flows from mobile applications, web services as well as Data Center Networks (DCN) and so on are through TCP. It is well known that Web latency inversely correlates with revenue and profit. For instance, Amazon estimates that every 100ms increase in latency cuts profits by 1\% \cite{linden2006make}. Most flows in DCN are short flows which are latency-sensitive. More importantly, many tasks in DCN such as searching, web page requests are partitioned into many small sub tasks and then aggregate the responses from all the sub tasks to form the final result. This means that the slowest flows determine the quality of service, which makes it important to reduce the tail of the latency distribution.
+
+\textbf{As the out-of -order problem is more serve for Multi-path TCP in heterogeneous networks, coding can play a greater role in Multi-path TCP.} Nowadays, much mobile devices and computers have more than one network interfaces and can access to different networks. There is widespread interest in hybrid and heterogeneous networks and on how to achieve robustness and good performance from them. A promising approach is through the use of multi-path TCP, which leverages path diversity to improve performance and provide robust data transfers. However when paths qualities (e.g. the round trip time and loss rate) are diverse, multi-path TCP requires large receive buffer and introduces larger latency due to out-of-order delivery. The randomization introduced by the coding process eases the scheduling of packet distribution, and, thus, makes the multipath transmission more efficient. Coding can provide multi-path TCP with simpler scheduling algorithm design and smaller buffer size requirement.
+
+\subsection{Challenges}
+\label{sec:e2eChall}
+
+There are several design issues that coded TCP would encounter. \textbf{Firstly, for new transport protocols in wide-area networks, fairness and TCP-friendly} should be achieved, which may conflict with the goal of coding. \textbf{Secondly, congestion control} needs to be maintained while wireless loss should be masked to improve throughput in networks with loss. \textbf{Thirdly, for coding, the coding rate} (i.e. the redundancy) should be appropriately chosen to realize immediately recovery and waste less bandwidth, which is difficult as perfect prediction of exceptional conditions, especially in large networked systems, is somewhere between difficult and impossible. \textbf{Fourthly,} to make coded TCP working, the benefits coding brings should be larger than the \textbf{overhead} (bandwidth cost, coding time cost, computation cost) it induces. \textbf{Fifthly, for TCP extensions, compatibility} including application-compatibility, TCP-compatibility, network-compatibility (mainly middle-boxes) is important and can be hard to handle.
+
+Fairness means a fair sharing of network resources among different flows. In TCP, fairness refers specifically to \emph{Flow Rate Fairness} \cite{briscoe2007flow}. When two TCP flows complete for the same link, they should receive an approximately equal share of the link bandwidth no matter which flow join the network first.
+With the widespread deployment of TCP, the discussion of fairness for transport protocols moves towards \emph{TCP-friendly} \cite{braden1998recommendations}, which means that new transport protocols should behave like an ordinary TCP flow under congestion conditions and share no more bandwidth than a TCP flow when completing for the same link.
+
+With TCP-friendly, flows could not send more packets than ordinary Reno-based TCP under the same condition. \noten{Really?} If so, even with coding, TCP has limit room for throughput improvement in networks with loss.
+Thus to resolve the problem that TCP's performance degrades greatly in networks with loss, it's inevitable to do harm to TCP-friendly.
+In other words, TCP with coding isn't suitable for wide area networks where TCP is widely deployed and used.
+But it can still be useful for local area networks such as high-speed data center networks. On the other hand, with the development of wireless communication technologies, micro area networks and personal area networks are blooming. From a person's perspective, more than one terminal is used. From a family's perspective, wireless devices are becoming ubiquitous in the household and intelligent management of the devices is becoming true such as Apple's HomeKit.
+
+Even without considering TCP-friendly, the congestion control algorithms may be still conflict with coding. Congestion control algorithms play an important role in TCP. They need to detect congestion and react accordingly to ease congestion by decreasing the sending rate. The IETF standardized TCP congestion control algorithm is based on Reno, which takes loss as the signal of congestion. Coding can recover lost packets through redundancy and mask losses from congestion control to improve throughput. But as TCP cannot differentiate wireless loss from congestion loss well, masking losses directly from congestion control will make Reno not working. The delay-based congestion control algorithms such as Vegas, Westwood are preferable for coding. New congestion control algorithms for coding are desirable.
+
+The redundancy coding provides can help recover loss data faster but costs more bandwidth. Decoding fails if redundant packets are smaller than lost ones, thus coding-based recovery falls back to acknowledgement-based recovery and provides no benefit. To make full use of the bandwidth as well as recover data immediately, coding rate should be tuned properly even for rateless codes. Moreover due to the buffer or delay limit and so on, block codes (also referred as batch-based codes) are used. That is to say, the data to transmit on this flow will be divided into several blocks. Then blocks are coded separately and transmitted sequentially. Waiting until receiving the decoding feedback of the last block to send the next block will be inefficient and waste a lot of bandwidth. One acknowledge after decoding is not adequate. To save bandwidth, precise estimation of loss rate, appropriate coding rate and timely feedback are needed. To reduce latency, larger redundancy can be tolerated and appropriate block size should be carefully selected.
+
+Coding would introduce extra overheads which should be considered to design a practical and useful protocol.
+Firstly, it requires time to perform coding, introducing extra latency. For latency-sensitive applications, coding latency cannot be ignored.
+Secondly, the redundancy introduced by coding costs extra bandwidth. On one hand, redundant packets are needed to complement for lost ones. On the other hand, coding header is needed for protocols to deliver the coding information, for example, what information the coded packet consists of, how many coded symbols are received. This coding header costs a part of bandwidth as well.
+Thirdly, the coding process costs computation resources and may induce energy problem for power-constrained mobile terminals.
+Notice that coding works only when the benefits it brings are larger than the overheads.
+
+For extensions, compatibility is one of the biggest issues. It's better for incremental deployment to take coding as TCP extensions instead of clean state design, but needs to take compatibility into consideration. For TCP, compatibility mainly includes application-compatibility, TCP-compatibility, network-compatibility (mainly middle-boxes). Among these, middle-boxes are widespread and can be hard to handle.
+
+%\begin{figure}[!t]
+%\centering
+%\includegraphics[width=2.5in]{myfigure}
+%\caption{Simulation Results.}
+%\label{fig_sim}
+%\end{figure}
+
+%\begin{figure*}[!t]
+%\centering
+%\subfloat[Case I]{\includegraphics[width=2.5in]{box}%
+%\label{fig_first_case}}
+%\hfil
+%\subfloat[Case II]{\includegraphics[width=2.5in]{box}%
+%\label{fig_second_case}}
+%\caption{Simulation results.}
+%\label{fig_sim}
+%\end{figure*}
+
+%\section{State of Art: examples of end-to-end FEC in TCP}
+\section{Solutions and Future prospects}
+\label{sec:state}
+
+There have being some explorations on how to leverage end-to-end FEC to improve the performance of TCP. We pick several typical and practical works in three application categories of improving throughput in wireless networks, reducing latency caused by loss and solving the out-of-order problem in multi-path TCP. What codes and how they are used, the protocol design, the issues they considered and ignored and the improvements they achieve will all be presented and analyzed in this section by categories.
+
+\begin{table*}[!t]
+%% increase table row spacing, adjust to taste
+\renewcommand{\arraystretch}{1.3}
+% if using array.sty, it might be a good idea to tweak the value of
+% \extrarowheight as needed to properly center the text within the cells
+\caption{End-to-end FEC in TCP}
+\label{tab:comparison}
+\centering
+%% Some packages, such as MDW tools, offer better commands for making tables
+%% than the plain LaTeX2e tabular which is used here.
+\begin{tabular}{l|c|c|c}
+\hline
+   & TCP/NC	& Corrective	& FMTCP \\
+\hline
+Codes	& Random Linear coding	& XORs	& Fountain Codes \\
+\hline
+Rateless &  Yes	 &	No & Yes \\
+\hline
+Retransmit	& No	& Yes	& No \\
+\hline
+Path Estimation & Yes &	No	& Yes \\
+\hline
+Networks	& Wireless &	DCN	& Multi-path \\
+\hline
+Goal	& Throughput	& Latency	& Both \\
+\hline
+TCP-friendly &	Aggressive &	Slightly Aggressive &	friendly \\
+\hline
+Congestion control	& Vegas	& Reno+SACK	 & \\
+\hline
+Coding rate adjust	&  &  &	 \\
+\hline
+Coding cost	&	&  &	\\
+\hline
+Middle-boxes &	No &	Yes &	Yes \\
+\hline
+\end{tabular}
+\end{table*}
+
+% needed in second column of first page if using \IEEEpubid
+%\IEEEpubidadjcol
+
+\subsection{Improve Throughput for wireless networks}
+\label{sec:stateThrouthput}
+
+%\cite{baldantoni2004adaptive} \cite{tickoo2005lt} \cite{sundararajan2009network} \cite{sundararajan2011network} \cite{kim2012network}
+As mentioned before, TCP's throughput can be far less than the available bandwidth it can share. The reason is mainly due to its congestion control algorithm. For wireless networks, TCP reacts to wireless losses by reducing the number of outstanding unacknowledged data segments allowed in networks even when the network is uncongested. Even in reliable wired networks, the overreaction to silent congestion and slow increasing of window in congestion avoid phrase after loss recovery make the throughput of TCP much lower than expected in high speed networks.
+Here we discuss how to improve the throughput of TCP with end-to-end FEC.
+
+We first introduce a complete protocol design of coded TCP called TCP/NC which is presented from theory to implementation in \cite{sundararajan2011network}.
+TCP/NC imports a new network coding layer between transport layer and network layer. The transport layer then remains unchanged or adopts delay-based congestion control algorithm of Vegas. The network coding layer conducts  buffering and encoding, decoding and acknowledging. 
+
+At sender side, it caches new packets from transport layer in a coding buffer and sends random linear combinations of packets currently in the coding buffer. For each new packet, $R$ coded packets are sent, where $R \geq 1$ is the redundancy factor. For a loss rate of $p_e$, the value of $R$ is set to $1/(1-p_e)$. 
+
+At the receiver side, coded packets are buffered until their decoding is confirmed by the sender. Transport layer acknowledgements are replaced by the decoder. Innovative (i.e. linearly independent of previously received linear combinations) coded packets will trigger a new acknowledgement for transport layer. They will be acknowledged another time to the sender of coding layer after decoded. Decoded packets are delivered to transport layer if packets before them are also decoded.
+
+
+TCP/NC masks all packet loss from transport layer when using Vegas congestion control algorithm. Wireless loss caused window reductions are avoided. When the window size of TCP is $W$, TCP/NC will send $W(1+R)$ packets. TCP/NC maintains fairness under the condition that $p_e = 0$ and $R = 1$, but the TCP-friendliness is still harmed in lossy networks. TCP/NC also proposes to work with Reno by tuning the coding window size to leak parts of packet losses to transport layer with sacrifice of correction capacity. But it's still confusing how to mask all wireless losses while keep congestion drops visible to TCP as losses.
+
+TCP/NC adds a coding header ahead of the TCP header to communicate the packet combination, which damages the TCP/IP header and may conflict with middle-boxes that read TCP header. Moreover, when the coding window has $n$ packets, the packet needs to carry $4n+7$ extra bytes, which is a large overhead.
+
+TCP/NC adopts random linear coding over a field of size 256 (GF(256)) and decodes by performing Gaussian elimination, whose computation complexity is large. Experiments show that the benefits brought by the erasure correction begin to outweigh the overhead of the computation and coding header for loss rates of about 3\%. Latency induced by coding has not been considered yet in TCP/NC.
+
+Finally, the sensitivity to the estimation of the path loss rate is not mentioned. Actually, the loss rate of a path may be very dynamic can not be precisely estimated. On the other hand, with a loss rate of $p_e$, a redundancy factor of $1/(1-p_e)$ cannot always guarantee that adequate number of coded packets (1 out of $1/(1-p_e)$) can be received with high probability.
+
+%COM04--43--Adaptive end-to-end FEC for improving TCP performance over wireless links
+
+L. Baldantoni et.al. \cite{baldantoni2004adaptive} add FEC to the widespread Reno-based TCP. They adopt system codes that send the original packets and some redundant coded packets. Parts of the lost packets can be recovered with the redundant coded packets. Then the loss rate seen by the congestion control is reduced and the throughput can be improved. Experiments show that TCP with FEC outperforms the now used TCP (New Reno and SACK) over a large range of loss probability and propagation delay. 
+%But as the main cause of performance degradation of TCP over lossy links is the congestion control, a direct modification of the congestion control, such as Westwood+, seems to be more efficient than adding FEC in most scenarios in respect of throughput improvement.
+Redundancy setting, path parameter estimation, feedback, loss model, congestion control are considered.
+
+%IWQoS05--66--LT-TCP End-to-End Framework to improve TCP Performance over Networks with Lossy Channels	
+
+O. Tickoo et.al. \cite{tickoo2005lt} proposed LT-TCP which exploits ECN to separate congestion indications from wireless loss. Timeout effects due to packet erasures are combated using a dynamic and adaptive FEC scheme that includes adaptation of TCP¡¯s Maximum Segment Size. Proactive and reactive FEC overhead enhance TCP SACK to protect original segments and retransmissions respectively.
+%TCP Westwood uses an estimate of output rate to guide congestion control, and has been effective for low erasure rates (under 5\%). 
+LT-TCP improves TCP performance even for packet loss rates up to 30\%.
+
+%They used an exponential weighted moving average (EWMA), with adaptive parameters to estimate per-window loss rate.
+
+%arXiv2012--10--Network Coded TCP (CTCP)
+
+
+\subsection{Reduce Latency in DCN}
+\label{sec:stateLatency}
+
+As mentioned above, latency is expensive for some web flows and data center flows.
+T. Flach et.al \cite{flach2013reducing} indicate that TCP's design is now becoming the bottle-neck of further latency improvement as the round trips required between clients and servers largely determine the overall latency of most those latency-sensitive flows.
+Thus they see the demand and potentiality of reducing latency from TCP's perspective.
+
+T. Flach et.al \cite{flach2013reducing} performed a measurement study of billions of those latency-sensitive TCP connections and found that flows with packet loss takes on average five times longer to complete than those without any loss due to the loss detection and recovery mechanism of TCP. TCP's fast recovery needs at least three packets after the loss are received and separately acknowledged. Measurements show that most losses occur at the tail of a burst, which have no enough acknowledgements to trigger fast recovery, thus are recovered through expensive retransmission time-outs (RTOs). Moreover, simply reducing the length of RTO does not address the latency problem due to frequent spurious retransmission and window reduction.
+
+Forward error correction coding is promising to improve delivery latency of TCP flows by providing 0-RTT loss recovery. As those latency-sensitive flows are short, the bandwidth overhead introduced by coding can be neglected. T. Flach et.al \cite{flach2013reducing} proposed a low-overhead mechanism called \emph{corrective} to cooperate FEC with coding. \emph{Corrective} adds a coded packet for each window of packets, which has low bandwidth overhead. The coding is done by XORing the payload of packets in the window, which has low computation overhead. \emph{Corrective} is designed as a TCP extension and uses TCP options to deliver the the number of bytes that the payload encodes. Packet losses that are recovered with coded packets will be notified explicitly using corrective option along with acknowledgements. \emph{Corrective} can recover single packet loss in one window. If more than one packet is lost, the receiver will notify the sender with a corrective option to trigger fast recovery. Experiments show that \emph{Corrective} reduces average latency by 4¨C10\%, and reduces 90th
+percentile latency by 18¨C28\%.
+
+\emph{Corrective} is mainly designed for congestion loss in data center environment, where loss rate is relatively low. For mobile scenarios, higher redundancy is needed to recover more than one loss in one window. With the goal of lower latency, the codes must have low complexity.
+
+Reducing latency via redundancy has also been proposed in \cite{vulimiri2012more} \cite{xu2014repflow}. They mainly consider replication of flows which can leverage path redundancy to improve reliability. Unlike replication, coding improves reliability via data redundancy, which is more flexible in redundancy setting and more bandwidth efficient. Moreover, with packet-level Equal Cost Multi-Path (ECMP) routing, coding can leverage path redundancy after eliminating the out-of-order problem.
+
+
+
+\subsection{Heterogeneous Multi-path Networks}
+\label{sec:stateMP}
+
+%\cite{sharma2008mplot}
+%\cite{kim2012ctcp}
+%\cite{cui2012fmtcp} \cite{cui2014fmtcp}
+%\cite{li2012network} \cite{li2013tolerating} \cite{li2014tolerating}
+
+After a long-time discussion, the idea of concurrent Multi-Path transfer has been finally realized as a multi-path extension of TCP (MPTCP) \cite{rfc6182}. The MPTCP working group has overcame many obstacles, but the traditional problems of out-of-order delivery which are much server for MPTCP haven't been well studied.
+
+MPTCP connections have one or more TCP subflows each of which behaves like one TCP flow. The subflows of one MPTCP connection usually follow different paths in heterogeneous Multi-path networks, and experience different round trip times and loss rates. If one packet is lost on the slowest path, the receiver window cannot advance until the lost packet is recovered. The duration from sending of the packet to receiving its acknowledgement will be $2RTT$ if it's recovered through fast recovery and $RTT+RTO$ if it's recovered through retransmission timeout. During the loss recovery, if the receiver buffer is full, the subflows can't send new packets even if their links are unoccupied. Thus fast and reliable flows can be blocked by bad flows.
+
+One solution is to use large receiver buffers. Regardless of timeout, the minimum receiver buffer size to avoid blocking should be at least twice the product of the sum of bandwidths of all subflows, and the round trip time of the slowest subflow, i.e. $2*sum(BW_i)*RTT_{max}$, which is recommended by MPTCP \cite{rfc6182}. When high bandwidth paths coexist with high latency paths, this buffer requirement can still be very large.
+Moreover, even with enough receiver buffer, the frequent out-of-order phenomena will introduce extra transfer latency.
+Another solution is to limit the usage of slow paths, which may go against the bandwidth aggregation feature of MPTCP and discourage the full utilization of network resources.
+
+%A tight upper bound would be the maximum round-trip time (RTT) of any path multiplied by the total bandwidth available across all paths. \cite{rfc6824}
+
+%Therefore, the RECOMMENDED receive buffer is $2*sum(BW_i)*RTT_{max}$, where $RTT_{max}$ is the largest RTT across all subflows. This buffer sizing ensures subflows do not stall when fast retransmit is triggered on any subflow. \cite{rfc6182}
+
+%To store incoming data until the application asks for it, we use a single connection-level receive queue. All subflow-receive queues are always empty, because as soon as a segment becomes in order at the subflow-level, it is enqueued in the connection-level receive queue, or out-of-order queue. \cite{barre2011multipath}
+
+Y. Cui et.al. \cite{cui2012fmtcp} proposed a rateless codes based MPTCP called FMTCP to ease this problem. The main idea is to leverage the sequence-agnostic properties of rateless coding. Coded packets in the same block are sequence-agnostic and relatively independent of each other. With coding, it is how many packets are lost instead of which packets are lost that matters. FMTCP incorporates MPTCP with low-complexity Fountain codes and designed a packet scheduling algorithm based on the estimation of delivery time of each subflow.
+
+M. Li et.al. proposed to introduce network coding to parts of the subflows (NC-MPTCP) in \cite{li2012network} and then further explored the usage of systematic coding (SC-MPTCP) in \cite{li2014tolerating}. They also adopt block coding and proposed to send some amount of coded redundant packets in the beginning of a block. With systematic coding, the original packets are sent directly without modification. To deal with under-estimation of proactive redundancy, they proposed a pre-blocking warning mechanism to retrieve reactive redundancy from the sender to further avoid blocking. When a subflow gets packets in-order in the subflow-receive queue but find no space in the shared connection-level buffer, it signal the sender to send the first unacknowledged packet on this path.
+
+These works all use NS-based simulation and ignored the computation overhead and coding delay. Protocol design and implementations, experimental results are needed.
+
+%M. Li et.al. \cite{li2012network} propose a new multipath TCP protocol, namely NC-MPTCP, which introduces network coding (NC) to some but not all subflows traveling from source to destination. At the core of our scheme is the mixed use of regular and NC subflows.
+
+%For example, when the proactive redundancy is underestimated, a pre-blocking warning mechanism could retrieve the missing packets without incurring the HLB. \cite{li2014tolerating}
+
+%MPLOT also overcomes the traditional problems of out-oforder delivery with protocols such as TCP-SACK when using multiple paths, by leveraging the sequence-agnostic properties of FEC, and intelligent packet mapping. \cite{sharma2008mplot}
+
+\section{Conclusion}
+\label{sec:conclusion}
+
+In this article, we present several limitations of TCP including low throughput in wireless networks, high latency due to loss and serve out-of-order problem of multi-path TCP in heterogeneous multi-path networks.
+In these situations, coding helps as a complementary or alternative loss recovery method of TCP.
+We analyze what benefits coding can bring, discuss the opportunities and challenges of incorporating end-to-end FEC into TCP, and summarize the state of the art in this field of research, hoping to motivate further research.
+
+%We describe why each problem happens, review current solutions, and discuss the challenges and opportunities, hoping the article can shed light on the research in this field.
+
+
+% use section* for acknowledgement
+\section*{Acknowledgment}
+
+
+This work is supported by the 973 Program of China (...) and the NSFC project (...).
+
+
+% Can use something like this to put references on a page
+% by themselves when using endfloat and the captionsoff option.
+\ifCLASSOPTIONcaptionsoff
+  \newpage
+\fi
+
+
+
+% trigger a \newpage just before the given reference
+% number - used to balance the columns on the last page
+% adjust value as needed - may need to be readjusted if
+% the document is modified later
+%\IEEEtriggeratref{8}
+% The "triggered" command can be changed if desired:
+%\IEEEtriggercmd{\enlargethispage{-5in}}
+
+% references section
+
+% can use a bibliography generated by BibTeX as a .bbl file
+% BibTeX documentation can be easily obtained at:
+% http://www.ctan.org/tex-archive/biblio/bibtex/contrib/doc/
+% The IEEEtran BibTeX style support page is at:
+% http://www.michaelshell.org/tex/ieeetran/bibtex/
+\bibliographystyle{IEEEtran}
+% argument is your BibTeX string definitions and bibliography database(s)
+\bibliography{IEEEabrv,reference}
+%
+% <OR> manually copy in the resultant .bbl file
+% set second argument of \begin to the number of references
+% (used to reserve space for the reference number labels box)
+%\begin{thebibliography}{1}
+
+%\bibitem{IEEEhowto:kopka}
+%H.~Kopka and P.~W. Daly, \emph{A Guide to \LaTeX}, 3rd~ed.\hskip 1em plus
+  %0.5em minus 0.4em\relax Harlow, England: Addison-Wesley, 1999.
+
+%\end{thebibliography}
+
+
+% biography section
+%
+% If you have an EPS/PDF photo (graphicx package needed) extra braces are
+% needed around the contents of the optional argument to biography to prevent
+% the LaTeX parser from getting confused when it sees the complicated
+% \includegraphics command within an optional argument. (You could create
+% your own custom macro containing the \includegraphics command to make things
+% simpler here.)
+%\begin{IEEEbiography}[{\includegraphics[width=1in,height=1.25in,clip,keepaspectratio]{mshell}}]{Michael Shell}
+% or if you just want to reserve a space for a photo:
+
+%[{\includegraphics[width=1in,height=1.25in,clip,keepaspectratio]{YCui.eps}}]
+\begin{IEEEbiographynophoto}{Yong Cui}
+received the B.E. degree and the Ph.D. degree in Computer Science and Engineering from Tsinghua University, China in 1999 and 2004, respectively. He is currently a full professor in Tsinghua University, Co-Chair of IETF IPv6 Transition WG Softwire.
+%Having published more than 100 papers in refereed journals and conferences, he received the National Award for Technological Invention in 2013, the Influential Invention Award of China Information Industry in both 2012 and 2004, the Best Paper Award in ACM ICUIMC 2011 and WASA 2010. Holding more than 40 patents, he authored 3 Internet standard documents, including RFC 7040 and RFC 5565, for his proposal on IPv6 transition technologies. He serves at the Editorial Board on both IEEE TPDS and IEEE TCC.
+His major research interests include mobile wireless Internet and computer network architecture.
+\end{IEEEbiographynophoto}
+
+%[{\includegraphics[width=1in,height=1.25in,clip,keepaspectratio]{LWang.eps}}]
+%\begin{IEEEbiography}{Lian Wang}
+\begin{IEEEbiographynophoto}{Lian Wang}
+received the B.E. degree in Computer Science from Tsinghua University, China in 2012. She is pursuing the master degree in the Department of Computer Science and Technology at Tsinghua University, supervised by Prof. Yong Cui. Her research interests include rateless coding and TCP.
+\end{IEEEbiographynophoto}
+
+\del{\begin{IEEEbiographynophoto}{JIAO ZHANG}
+(zhangjiao1986@gmail.com) is currently a Ph.D. candidate of the Department of Computer Science and Technology, Tsinghua University, Beijing, China. Her supervisor is Prof. Fengyuan Ren. She received her Bachelor's degree in computer science and technology from Beijing University of Posts and Telecommunication in 2008.
+Since August 2012, she has been a visiting student in the networking group of ICSI, University of California, Berkeley.
+Her recent research focuses on traffic management in data center networks.
+She has also done some work on data aggregation and energy-efficient routing in wireless sensor networks before.
+\end{IEEEbiographynophoto}}
+
+%[{\includegraphics[width=1in,height=1.25in,clip,keepaspectratio]{XWang.eps}}]
+\begin{IEEEbiographynophoto}{Xin Wang}
+received the B.S. and M.S. degrees in telecommunications engineering and wireless communications engineering respectively from Beijing University of Posts and Telecommunications, Beijing, China, and the Ph.D. degree in electrical and computer engineering from Columbia University, New York, NY.
+She is currently an Associate Professor in the Department of Electrical and Computer Engineering of the State University of New York at Stony Brook, Stony Brook, NY.
+%Before joining Stony Brook, she was a Member of Technical Staff in the area of mobile and wireless networking at Bell Labs Research, Lucent Technologies, New Jersey, and an Assistant Professor in the Department of Computer Science and Engineering of the State University of New York at Buffalo, Buffalo, NY.
+Her research interests include algorithm and protocol design in wireless networks and communications, mobile and distributed computing, as well as networked sensing and detection.
+%She has served in executive committee and technical committee of numerous conferences and funding review panels, and is the referee for many technical journals. Dr.Wang achieved the NSF career award in 2005, and ONR challenge award in 2010.
+\end{IEEEbiographynophoto}
+
+
+%\begin{IEEEbiography}{Michael Shell}
+%Biography text here.
+%\end{IEEEbiography}
+
+% if you will not have a photo at all:
+%\begin{IEEEbiographynophoto}{John Doe}
+%Biography text here.
+%\end{IEEEbiographynophoto}
+
+% insert where needed to balance the two columns on the last page with
+% biographies
+%\newpage
+
+%\begin{IEEEbiographynophoto}{Jane Doe}
+%Biography text here.
+%\end{IEEEbiographynophoto}
+
+% You can push biographies down or up by placing
+% a \vfill before or after them. The appropriate
+% use of \vfill depends on what kind of text is
+% on the last page and whether or not the columns
+% are being equalized.
+
+%\vfill
+
+% Can be used to pull up biographies so that the bottom of the last one
+% is flush with the other column.
+%\enlargethispage{-5in}
+
+
+
+% that's all folks
+\end{document}
+
+
